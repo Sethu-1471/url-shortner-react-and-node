@@ -30,17 +30,24 @@ const useStyles = makeStyles((theme) => ({
 export default function RecipeReviewCard() {
     const classes = useStyles();
     const [url, setUrl] = useState(null);
-    const [longUrl, setLongUrl] = useState();
+  const [longUrl, setLongUrl] = useState();
+  
 
     const getUrl = () => {
         let body = {
             longUrl: longUrl
         }
         axiox.post("http://localhost:4500/api/url/shorten", body).then(res => {
-            console.log(res.data);
             setUrl(res.data);
         })
-    }
+  }
+  
+  const copy = async() => {
+    var element = document.getElementById("myId");
+    let elementText = element.textContent; //get the text content from the element
+    await navigator.clipboard.writeText(elementText)
+
+  }
 
   return (
     <Card className={classes.root} >
@@ -68,9 +75,12 @@ export default function RecipeReviewCard() {
                  
                   {url ? 
                       <p>
-                          <b>Short Url:</b>  <a href={url.shortUrl} target="_blank"> {url.shortUrl} </a> 
+                          <b>Short Url:</b> <span id="myId">{url.shortUrl}</span> 
                     </p>
-                  : null}
+          : null}
+        <Button variant="outlined" onClick={copy} color="primary" style={{ marginLeft: "9px" }}>
+              Copy URL
+            </Button>
                   
           </CardContent>
           <CardActions>
