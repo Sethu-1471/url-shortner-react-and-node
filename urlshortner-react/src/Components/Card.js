@@ -73,14 +73,17 @@ export default function RecipeReviewCard() {
                  <b>Long Url:</b> { url.longUrl }
                   </p> :  null}
                  
-                  {url ? 
+        {url ? 
                       <p>
                           <b>Short Url:</b> <span id="myId">{url.shortUrl}</span> 
-                    </p>
+          </p>
+          
           : null}
-        <Button variant="outlined" onClick={copy} color="primary" style={{ marginLeft: "9px" }}>
+        
+        {url ? <Button variant="outlined" onClick={copy} color="primary" style={{ marginLeft: "9px" }}>
               Copy URL
-            </Button>
+            </Button> : null}
+        
                   
           </CardContent>
           <CardActions>
