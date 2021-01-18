@@ -1,0 +1,4 @@
+{
+    "mongoURL": "mongodb://localhost/urlShortner",
+    "baseURL": "http://localhost:4500"
+}
